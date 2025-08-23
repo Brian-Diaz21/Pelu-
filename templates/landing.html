@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Brian Diaz - Catálogo</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #ffb6c1; margin: 0; } /* Fondo rosado */
+        .header { background: #222; color: #fff; padding: 2rem; text-align: center; }
+        .info {
+            background: #fff0f6;
+            color: #a94442;
+            margin: 2rem auto 0 auto;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .catalogo { display: flex; flex-wrap: wrap; justify-content: center; margin: 2rem 0; }
+        .servicio {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin: 1rem;
+            padding: 1.5rem;
+            width: 250px;
+            text-align: center;
+        }
+        .servicio h2 { margin-top: 0; }
+        .precio { color: #e67e22; font-weight: bold; font-size: 1.2em; }
+        .contacto {
+            background: #fff0f6;
+            color: #a94442;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            max-width: 600px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Diaz Brian</h1>
+        <p>Bienvenido a nuestra landing page. Descubre nuestros servicios:</p>
+    </div>
+    <div class="info">
+        <h2>Sobre Nosotros</h2>
+        <p>En Peluquería Glamour, nos especializamos en realzar tu belleza con los mejores servicios de corte, coloración y tratamientos capilares. Nuestro equipo cuenta con años de experiencia y utiliza productos de alta calidad para garantizar tu satisfacción.</p>
+        <p>¡Visítanos y vive una experiencia única!</p>
+    </div>
+    <div class="catalogo">
+        {% for servicio in catalogo %}
+        <div class="servicio">
+            <h2>{{ servicio.nombre }}</h2>
+            <p>{{ servicio.descripcion }}</p>
+            <div class="precio">{{ servicio.precio }}</div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="contacto">
+        <h2>Contacto</h2>
+        <p>Dirección: Av. Belleza 123, Ciudad Glamour</p>
+        <p>Teléfono: (123) 456-7890</p>
+        <p>Email: contacto@peluqueriaglamour.com</p>
+        <p>Horario: Lunes a Sábado, 9:00 - 19:00</p>
+    </div>
+</body>
+</html>
