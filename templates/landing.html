@@ -3,9 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Brian Diaz - Catálogo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { font-family: Arial, sans-serif; background: #ffb6c1; margin: 0; } /* Fondo rosado */
-        .header { background: #222; color: #fff; padding: 2rem; text-align: center; }
+        /* Imagen de fondo de una chica exhibiendo su pelo */
+        body {
+            font-family: Arial, sans-serif;
+            background: url('/static/fondo5.jpg') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+        }
+        .navbar {
+            background: #dea1a1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar a {
+            color: #a94442;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.2s;
+        }
+        .navbar a:hover {
+            color: #e67e22;
+        }
+        section {
+            margin: 2rem auto;
+            max-width: 900px;
+            padding: 1rem;
+        }
+        .header { background: #222; color: #faf3f3; padding: 2rem; text-align: center; border-radius: 8px; }
         .info {
             background: #fff0f6;
             color: #a94442;
@@ -16,8 +48,14 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             text-align: center;
         }
-        .catalogo { display: flex; flex-wrap: wrap; justify-content: center; margin: 2rem 0; }
-        .servicio {
+        .catalogo, .trabajos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 1.5rem;
+        }
+        .servicio, .trabajo {
             background: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
@@ -26,45 +64,173 @@
             width: 250px;
             text-align: center;
         }
+        .trabajo img {
+            width: 180px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+        }
         .servicio h2 { margin-top: 0; }
         .precio { color: #e67e22; font-weight: bold; font-size: 1.2em; }
-        .contacto {
-            background: #fff0f6;
-            color: #a94442;
-            margin: 2rem auto;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            max-width: 600px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-align: center;
+        /* Responsive */
+        @media (max-width: 600px) {
+            section {
+                padding: 0.5rem;
+            }
+            .catalogo, .trabajos {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .servicio, .trabajo {
+                width: 95vw;
+                min-width: 0;
+                margin: 0.5rem 0;
+                padding: 1rem;
+            }
+            .header, .info, .contacto {
+                max-width: 98vw;
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Diaz Brian</h1>
-        <p>Bienvenido a nuestra landing page. Descubre nuestros servicios:</p>
-    </div>
-    <div class="info">
-        <h2>Sobre Nosotros</h2>
-        <p>En Peluquería Glamour, nos especializamos en realzar tu belleza con los mejores servicios de corte, coloración y tratamientos capilares. Nuestro equipo cuenta con años de experiencia y utiliza productos de alta calidad para garantizar tu satisfacción.</p>
-        <p>¡Visítanos y vive una experiencia única!</p>
-    </div>
-    <div class="catalogo">
-        {% for servicio in catalogo %}
-        <div class="servicio">
-            <h2>{{ servicio.nombre }}</h2>
-            <p>{{ servicio.descripcion }}</p>
-            <div class="precio">{{ servicio.precio }}</div>
+    <nav class="navbar">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#trabajos">Trabajos Realizados</a>
+        <a href="#reserva">Reservar Turno</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <section id="inicio">
+        <div class="header">
+            <h1>Y.uhairbeauty</h1>
+            <p>Bienvenido a nuestra landing page. Descubre nuestros servicios:</p>
         </div>
-        {% endfor %}
-    </div>
-    <div class="contacto">
-        <h2>Contacto</h2>
-        <p>Dirección: Av. Belleza 123, Ciudad Glamour</p>
-        <p>Teléfono: (123) 456-7890</p>
-        <p>Email: contacto@peluqueriaglamour.com</p>
-        <p>Horario: Lunes a Sábado, 9:00 - 19:00</p>
-    </div>
+        <div class="info">
+            <h2>Sobre Nosotros</h2>
+            <p>En Peluquería Y.uhairbeauty, nos especializamos en realzar tu belleza con los mejores servicios de corte, coloración y tratamientos capilares. Nuestro equipo cuenta con años de experiencia y utiliza productos de alta calidad para garantizar tu satisfacción.</p>
+            <p>¡Visítanos y vive una experiencia única!</p>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <h2 style="text-align:center; color:#a94442;">Servicios</h2>
+        <div class="catalogo">
+            {% for servicio in catalogo %}
+            <div class="servicio">
+                <h2>{{ servicio.nombre }}</h2>
+                <p>{{ servicio.descripcion }}</p>
+                <div class="precio">{{ servicio.precio }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="trabajos">
+        <h2 style="text-align:center; color:#a94442;">Trabajos Realizados</h2>
+        <div class="trabajos">
+            <div class="trabajo">
+                <img src="/static/corte11.jpg" alt="Trabajo 1">
+                <p>Corte y peinado moderno</p>
+            </div>
+            <div class="trabajo">
+                <img src="/static/color11.jpg" alt="Trabajo 2">
+                <p>Coloración profesional</p>
+            </div>
+            <div class="trabajo">
+                <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=400&q=80" alt="Trabajo 3">
+                <p>Tratamiento capilar</p>
+            </div>
+            <div class="trabajo">
+                <img src="/static/trabajo4.jpg" alt="Trabajo 4">
+                <p>Alisado y brillo extremo</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="contacto">
+            <h2>Contacto</h2>
+            <p>Dirección: Julio Argentino Roca 535</p>
+            <p>Teléfono: 3493522663</p>
+            <p>Email: contacto@peluqueriaglamour.com</p>
+            <p>Horario: Lunes a Sábado, 9:00 - 19:00</p>
+        </div>
+    </section>
+
+    <section id="reserva">
+        <div class="contacto">
+            <h2>Reservar Turno</h2>
+            <form action="/reservar" method="post" id="form-reserva" style="display:flex; flex-direction:column; gap:1em; align-items:center;">
+                <input type="text" name="nombre" placeholder="Tu nombre" required style="padding:0.5em; width:80%;">
+                <input type="tel" name="telefono" placeholder="Tu teléfono" required style="padding:0.5em; width:80%;">
+                <label>Día: <input type="date" name="dia" id="dia" required style="padding:0.5em;"></label>
+                <label>Hora:
+                    <select name="hora" id="hora" required style="padding:0.5em;">
+                        <!-- Las opciones se llenan dinámicamente -->
+                    </select>
+                </label>
+                <button type="submit" style="padding:0.7em 2em; background:#a94442; color:#fff; border:none; border-radius:5px; font-size:1em;">Reservar</button>
+            </form>
+            <p style="margin-top:1em; font-size:0.95em;">Recibirás confirmación por WhatsApp.</p>
+        </div>
+    </section>
+    <script>
+function getDayOfWeek(dateString) {
+    // 0: domingo, 1: lunes, ..., 6: sábado
+    return new Date(dateString).getDay();
+}
+
+function getAvailableHours(dateString) {
+    const day = getDayOfWeek(dateString);
+    let hours = [];
+    if (day >= 1 && day <= 5) { // Lunes a viernes
+        for (let h = 17; h <= 21; h++) {
+            hours.push((h < 10 ? "0" : "") + h + ":00");
+            hours.push((h < 10 ? "0" : "") + h + ":30");
+        }
+    } else if (day === 6) { // Sábado
+        for (let h = 13; h <= 18; h++) {
+            hours.push((h < 10 ? "0" : "") + h + ":00");
+            hours.push((h < 10 ? "0" : "") + h + ":30");
+        }
+    }
+    return hours;
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const diaInput = document.getElementById("dia");
+    const horaSelect = document.getElementById("hora");
+
+    diaInput.addEventListener("change", function() {
+        const dia = diaInput.value;
+        // Limpiar opciones
+        horaSelect.innerHTML = "";
+        if (!dia) return;
+        // Obtener horarios disponibles según el día
+        const available = getAvailableHours(dia);
+        // Consultar horarios ocupados
+        fetch(`/horarios_ocupados?dia=${dia}`)
+            .then(res => res.json())
+            .then(ocupados => {
+                available.forEach(hora => {
+                    const option = document.createElement("option");
+                    option.value = hora;
+                    option.textContent = hora;
+                    if (ocupados.includes(hora)) {
+                        option.disabled = true;
+                        option.textContent += " (Ocupado)";
+                    }
+                    horaSelect.appendChild(option);
+                });
+            });
+    });
+});
+    </script>
 </body>
 </html>
+

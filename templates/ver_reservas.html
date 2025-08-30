@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas - Peluquería Glamour</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f8f8f8; margin: 0; }
+        h1 { text-align: center; color: #a94442; }
+        table { margin: 2rem auto; border-collapse: collapse; width: 90%; max-width: 800px; background: #fff; }
+        th, td { border: 1px solid #ddd; padding: 0.7em 1em; text-align: center; }
+        th { background: #a94442; color: #fff; }
+        tr:nth-child(even) { background: #f9eaea; }
+        a { display: block; text-align: center; margin: 2rem; color: #a94442; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>Reservas Recibidas</h1>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Día</th>
+            <th>Hora</th>
+        </tr>
+        {% for r in reservas %}
+        <tr>
+            <td>{{ r['nombre'] }}</td>
+            <td>{{ r['email'] }}</td>
+            <td>{{ r['telefono'] }}</td>
+            <td>{{ r['dia'] }}</td>
+            <td>{{ r['hora'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Volver al inicio</a>
+</body>
+</html>
